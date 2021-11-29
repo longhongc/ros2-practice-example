@@ -17,9 +17,16 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(sensor_interfaces REQUIRED)
+
+add_executable(temp_pub src/temp.cpp)
+ament_target_dependencies(temp_pub rclcpp sensor_interfaces)
+
+install(TARGETS
+    temp_pub
+    DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
