@@ -10,8 +10,8 @@ from data_processor.utils import signal_handler, plot
 class TemperatureSubscriber(Node):
 
     def __init__(self):
-        super().__init__("temperature_subscriber")
-        self.subscription = self.create_subscription(Temperature, "temp", self.listener_callback, 10)
+        super().__init__('temperature_subscriber')
+        self.subscription = self.create_subscription(Temperature, 'temp', self.listener_callback, 10)
         self.subscription #prevent unused variable warning
         self.count = 0
         plot.temperature_plot_setting()
@@ -19,7 +19,7 @@ class TemperatureSubscriber(Node):
     def listener_callback(self, msg):
         plot.frame(self.count, msg.temp)
         self.count+=1
-        self.get_logger().info("I heard: %s" % msg.temp)
+        self.get_logger().info('I heard: %s' % msg.temp)
 
 def main(args=None):
     signal.signal(signal.SIGINT, signal_handler.signal_handler)
@@ -33,5 +33,5 @@ def main(args=None):
     temperature_subscriber.destroy_node()
     rclpy.shutdown()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
