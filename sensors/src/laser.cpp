@@ -39,7 +39,11 @@ class LaserPublisher: public rclcpp::Node{
                 rclcpp::SerializedMessage extracted_serialized_msg(*bag_message->serialized_data); 
                 auto message = sensor_msgs::msg::LaserScan(); 
                 serialization.deserialize_message(&extracted_serialized_msg, &message);
-                RCLCPP_INFO(this->get_logger(), "Publishing speed "); 
+
+                auto sec = message.header.stamp.sec;
+                auto nsec = message.header.stamp.nanosec;
+
+                RCLCPP_INFO(this->get_logger(), "Publishing laser %d.%ld", sec, nsec); 
                 publisher_->publish(message); 
             }else{
                 RCLCPP_INFO(this->get_logger(), "Data end, exiting..."); 

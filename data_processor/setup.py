@@ -22,6 +22,7 @@ setup(
         'console_scripts': [
             'temp_subcriber = data_processor.temperature_subscriber:main',
             'speed_subcriber = data_processor.speed_subscriber:main',
+            'laser_subcriber = data_processor.laser_subscriber:main',
         ],
     },
 )
