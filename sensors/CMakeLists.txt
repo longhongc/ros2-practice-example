@@ -19,12 +19,38 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_interfaces REQUIRED)
+find_package(geometry_msgs REQUIRED)
+
+find_package(rcpputils REQUIRED)
+find_package(rosbag2_cpp REQUIRED)
+find_package(rosbag2_storage REQUIRED)
+find_package(rosbag2_compression REQUIRED)
+find_package(rosbag2_storage_default_plugins REQUIRED)
 
 add_executable(temp_pub src/temp.cpp)
-ament_target_dependencies(temp_pub rclcpp sensor_interfaces)
+ament_target_dependencies(temp_pub 
+    rclcpp 
+    sensor_interfaces
+)
+
+add_executable(speed_pub src/speed.cpp)
+ament_target_dependencies(speed_pub 
+    rclcpp 
+    geometry_msgs
+)
+
+# add_executable(speed_pub src/speed.cpp)
+# ament_target_dependencies(speed_pub
+#     rclcpp
+#     geometry_msgs
+#     rosbag2_cpp 
+#     rosbag2_storage
+#     rosbag2_storage_default_plugins
+# )
 
 install(TARGETS
     temp_pub
+    speed_pub
     DESTINATION lib/${PROJECT_NAME}
 )
 
