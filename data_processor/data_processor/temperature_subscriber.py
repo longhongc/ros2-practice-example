@@ -17,7 +17,7 @@ class TemperatureSubscriber(Node):
         plot.temperature_plot_setting()
 
     def listener_callback(self, msg):
-        plot.frame(self.count, msg.temp)
+        plot.draw_temp(self.count, msg.temp)
         self.count+=1
         self.get_logger().info('I heard: %s' % msg.temp)
 
