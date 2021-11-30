@@ -20,6 +20,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_interfaces REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 find_package(rcpputils REQUIRED)
 find_package(rosbag2_cpp REQUIRED)
@@ -39,18 +40,19 @@ ament_target_dependencies(speed_pub
     geometry_msgs
 )
 
-# add_executable(speed_pub src/speed.cpp)
-# ament_target_dependencies(speed_pub
-#     rclcpp
-#     geometry_msgs
-#     rosbag2_cpp 
-#     rosbag2_storage
-#     rosbag2_storage_default_plugins
-# )
+add_executable(laser_pub src/laser.cpp)
+ament_target_dependencies(laser_pub 
+    rclcpp 
+    sensor_msgs
+    rosbag2_cpp 
+    rosbag2_storage
+    rosbag2_storage_default_plugins
+)
 
 install(TARGETS
     temp_pub
     speed_pub
+    laser_pub
     DESTINATION lib/${PROJECT_NAME}
 )
 
