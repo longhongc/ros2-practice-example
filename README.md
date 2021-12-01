@@ -45,7 +45,7 @@ ROS2 foxy
 Clone project into src of ros2 workspace 
 ```bash
 cd {ros2_workspace}/src
-git clone 
+git clone https://github.com/longhongc/ros2-practice-example.git
 ```
 Go back to ros2 workspace and build
 ```bash
