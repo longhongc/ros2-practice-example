@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+    <include file="$(find-pkg-share data_processor)/laser_subscriber_launch.py"/>
+        
+    <node pkg="sensors" exec="laser_publisher" name="laser_publisher" /> 
+
+</launch>

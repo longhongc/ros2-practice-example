@@ -1,4 +1,7 @@
+import os
+from glob import glob
 from setuptools import setup
+
 
 package_name = 'data_processor'
 
@@ -10,6 +13,8 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name), glob('launch/*_launch.py')),
+        (os.path.join('share', package_name), glob('rviz/*.rviz'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -20,9 +25,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'temp_subcriber = data_processor.temperature_subscriber:main',
-            'speed_subcriber = data_processor.speed_subscriber:main',
-            'laser_subcriber = data_processor.laser_subscriber:main',
+            'temp_subscriber = data_processor.temp_subscriber:main',
+            'speed_subscriber = data_processor.speed_subscriber:main',
+            'laser_subscriber = data_processor.laser_subscriber:main',
         ],
     },
 )

@@ -28,32 +28,41 @@ find_package(rosbag2_storage REQUIRED)
 find_package(rosbag2_compression REQUIRED)
 find_package(rosbag2_storage_default_plugins REQUIRED)
 
-add_executable(temp_pub src/temp.cpp)
-ament_target_dependencies(temp_pub 
+find_package(ament_index_cpp REQUIRED)
+
+add_executable(temp_publisher src/temp.cpp)
+ament_target_dependencies(temp_publisher 
     rclcpp 
     sensor_interfaces
 )
 
-add_executable(speed_pub src/speed.cpp)
-ament_target_dependencies(speed_pub 
+add_executable(speed_publisher src/speed.cpp)
+ament_target_dependencies(speed_publisher
     rclcpp 
     geometry_msgs
 )
 
-add_executable(laser_pub src/laser.cpp)
-ament_target_dependencies(laser_pub 
+add_executable(laser_publisher src/laser.cpp)
+ament_target_dependencies(laser_publisher 
     rclcpp 
     sensor_msgs
     rosbag2_cpp 
     rosbag2_storage
     rosbag2_storage_default_plugins
+    ament_index_cpp
 )
 
 install(TARGETS
-    temp_pub
-    speed_pub
-    laser_pub
+    temp_publisher
+    speed_publisher
+    laser_publisher
     DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+    launch
+    laser_test_data
+    DESTINATION share/${PROJECT_NAME}/
 )
 
 if(BUILD_TESTING)

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+    <node pkg="data_processor" exec="speed_subscriber" name="speed_subscriber" /> 
+
+    <node pkg="turtlesim" exec="turtlesim_node" name="turtlesim_node" /> 
+
+    <node pkg="sensors" exec="speed_publisher" name="speed_publisher" /> 
+
+</launch>

@@ -10,7 +10,7 @@ from data_processor.utils import signal_handler, plot
 class TemperatureSubscriber(Node):
 
     def __init__(self):
-        super().__init__('temperature_subscriber')
+        super().__init__('temp_subscriber')
         self.subscription = self.create_subscription(Temperature, 'temp', self.listener_callback, 10)
         self.subscription #prevent unused variable warning
         self.count = 0

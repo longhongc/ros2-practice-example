@@ -11,15 +11,19 @@
 #include "rosbag2_cpp/reader.hpp"
 #include "rosbag2_cpp/readers/sequential_reader.hpp"
 
+#include "ament_index_cpp/get_package_share_directory.hpp"
+
 #include "sensor_msgs/msg/laser_scan.hpp"
 
 using namespace std::chrono_literals; 
+
+std::string package_share_directory = ament_index_cpp::get_package_share_directory("sensors");
 
 class LaserPublisher: public rclcpp::Node{
     public:
         LaserPublisher()
         :Node("laser_publisher"),
-         storage_options({"laser_test_data", "sqlite3"}),
+         storage_options({package_share_directory + "/laser_test_data", "sqlite3"}),
          pub_rate_{80}{
             std::string format_str = "cdr"; 
             converter_options.input_serialization_format = format_str;
@@ -46,8 +50,10 @@ class LaserPublisher: public rclcpp::Node{
                 RCLCPP_INFO(this->get_logger(), "Publishing laser %d.%ld", sec, nsec); 
                 publisher_->publish(message); 
             }else{
-                RCLCPP_INFO(this->get_logger(), "Data end, exiting..."); 
-                rclcpp::shutdown(); 
+                RCLCPP_INFO(this->get_logger(), "Repeat data again"); 
+                reader.reset(); 
+                reader = std::make_unique<rosbag2_cpp::readers::SequentialReader>();
+                reader->open(storage_options, converter_options);
             }
   
         }

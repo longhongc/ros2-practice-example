@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+    <node pkg="data_processor" exec="temp_subscriber" name="temp_subscriber" /> 
+
+    <node pkg="sensors" exec="temp_publisher" name="temp_publisher" /> 
+
+</launch>

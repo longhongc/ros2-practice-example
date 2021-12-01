@@ -12,7 +12,7 @@ using namespace std::chrono_literals;
 class TemperaturePublisher: public rclcpp::Node{
     public:
         TemperaturePublisher()
-        :Node("temperature_publisher"),
+        :Node("temp_publisher"),
          pub_rate_{30}, 
          count_{0}{
             publisher_ = this->create_publisher<sensor_interfaces::msg::Temperature>("temp", 10); 

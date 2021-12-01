@@ -1,0 +1,19 @@
+rosbag2_bagfile_information:
+  compression_format: ''
+  compression_mode: ''
+  duration:
+    nanoseconds: 26106000000
+  message_count: 262
+  relative_file_paths:
+  - pure_laser_2021-11-30-12-55-01.db3
+  starting_time:
+    nanoseconds_since_epoch: 117744000000
+  storage_identifier: sqlite3
+  topics_with_message_count:
+  - message_count: 262
+    topic_metadata:
+      name: /newbot2/scan
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/LaserScan
+  version: 4
