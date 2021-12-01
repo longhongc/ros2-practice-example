@@ -23,7 +23,7 @@ class TemperaturePublisher: public rclcpp::Node{
         double create_random_temp(int mean, int sigma){
             std::random_device rd;
             std::mt19937 gen(rd()); 
-            std::normal_distribution<double> gauss_dist(mean, signa); //mean=27 degree, sigma=1
+            std::normal_distribution<double> gauss_dist(mean, sigma); //mean=27 degree, sigma=1
             return gauss_dist(gen); 
         }
 
