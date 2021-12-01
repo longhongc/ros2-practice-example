@@ -63,6 +63,7 @@ Launch all nodes
 ```bash
 ros2 launch sensors temp.launch
 ```
+<img src="https://user-images.githubusercontent.com/28807825/144190076-75f45622-e123-4ca4-80cc-7400ba095688.gif" alt="drawing" width="300"/>
 
 ### Speed Sensor
 Run nodes seperately  
@@ -74,6 +75,10 @@ Launch all nodes
 ```bash
 ros2 launch sensors speed.launch
 ```
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/28807825/144190545-b0bda739-cafd-4825-b2d6-f7887ce020c8.gif" width="300" />
+  <img src="https://user-images.githubusercontent.com/28807825/144190558-e8098046-be98-4257-b2c1-c708dba60cae.gif" width="300" /> 
+</p>
 
 ### Laser Sensor
 Run nodes seperately  
@@ -85,6 +90,9 @@ Launch all nodes
 ```bash
 ros2 launch sensors laser.launch
 ```
-
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/28807825/144191081-11c4f312-0bdb-43c6-bcba-60237e527e4d.gif" width="450" />
+  <img src="https://user-images.githubusercontent.com/28807825/144191798-6e759749-4e2e-4a95-bfc1-72a66c26a084.gif" width="450" /> 
+</p>
 
 
