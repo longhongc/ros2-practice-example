@@ -17,6 +17,7 @@ class SpeedSubscriber(Node):
         plot.speed_plot_setting()
 
     def listener_callback(self, msg):
+        # draw the veclociy along with its receiving index
         plot.draw_speed(self.count, msg.linear.x, msg.angular.z)
         self.count+=1
         
@@ -32,6 +33,7 @@ class SpeedSubscriber(Node):
                                'angular: [x: %lf, y: %lf, z: %lf]'%(lx, ly, lz, ax, ay, az))
 
 def main(args=None):
+    # Ctrl-c to terminate the node
     signal.signal(signal.SIGINT, signal_handler.signal_handler)
     rclpy.init(args=args)
 

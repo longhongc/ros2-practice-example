@@ -12,17 +12,19 @@ class TemperatureSubscriber(Node):
     def __init__(self):
         super().__init__('temp_subscriber')
         self.subscription = self.create_subscription(Temperature, 'temp', self.listener_callback, 10)
-        self.subscription #prevent unused variable warning
+        self.subscription # prevent unused variable warning
         self.count = 0
         plot.temperature_plot_setting()
 
     def listener_callback(self, msg):
+        # draw the temperature along with its receiving index
         plot.draw_temp(self.count, msg.temp)
         self.count+=1
         self.get_logger().info('I heard: %s' % msg.temp)
 
 
 def main(args=None):
+    # Ctrl-c to terminate the node
     signal.signal(signal.SIGINT, signal_handler.signal_handler)
     rclpy.init(args=args)
 

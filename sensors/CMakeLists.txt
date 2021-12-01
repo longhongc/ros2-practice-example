@@ -18,16 +18,19 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+
+# message
 find_package(sensor_interfaces REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
-find_package(rcpputils REQUIRED)
+# rosbag
 find_package(rosbag2_cpp REQUIRED)
 find_package(rosbag2_storage REQUIRED)
 find_package(rosbag2_compression REQUIRED)
 find_package(rosbag2_storage_default_plugins REQUIRED)
 
+# getting path to install/share
 find_package(ament_index_cpp REQUIRED)
 
 add_executable(temp_publisher src/temp.cpp)

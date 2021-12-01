@@ -17,6 +17,7 @@
 
 using namespace std::chrono_literals; 
 
+// getting the install/share path
 std::string package_share_directory = ament_index_cpp::get_package_share_directory("sensors");
 
 class LaserPublisher: public rclcpp::Node{
@@ -29,9 +30,11 @@ class LaserPublisher: public rclcpp::Node{
             converter_options.input_serialization_format = format_str;
             converter_options.output_serialization_format = format_str; 
 
+            // rosbag reader
             reader->open(storage_options, converter_options);
 
             publisher_ = this->create_publisher<sensor_msgs::msg::LaserScan>("/scan", 10); 
+            // convert frequency to interval
             auto interval = std::chrono::milliseconds(1000/pub_rate_); 
             timer_ = this->create_wall_timer(interval, std::bind(&LaserPublisher::timer_callback, this)); 
          }
@@ -47,9 +50,11 @@ class LaserPublisher: public rclcpp::Node{
                 auto sec = message.header.stamp.sec;
                 auto nsec = message.header.stamp.nanosec;
 
+                // print the laser timestamp to examine the subscriber
                 RCLCPP_INFO(this->get_logger(), "Publishing laser %d.%ld", sec, nsec); 
                 publisher_->publish(message); 
             }else{
+                // restart the rosbag reader to read again
                 RCLCPP_INFO(this->get_logger(), "Repeat data again"); 
                 reader.reset(); 
                 reader = std::make_unique<rosbag2_cpp::readers::SequentialReader>();

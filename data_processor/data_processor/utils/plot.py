@@ -17,6 +17,8 @@ prev_x = 0
 prev_y = 0
 def draw_temp(x, y):
     global repeat_length, prev_x, prev_y
+
+    # make the axis move dynamically with the data
     if(x > repeat_length):
         plt.xlim(x - repeat_length, x)
     else:
@@ -32,11 +34,8 @@ def draw_temp(x, y):
 def speed_plot_setting():
     global repeat_length, axis_list
     fig.canvas.set_window_title('Speed')
-    #_, (ax1, ax2) = plt.subplots(2, sharex=True)
     ax1 = plt.subplot(2,1,1)
     ax2 = plt.subplot(2,1,2)
-   # axis_list.append(ax1)
-   # axis_list.append(ax2)
     ax1.title.set_text('linear')
     ax2.title.set_text('angular')
     repeat_length = 50
@@ -55,6 +54,7 @@ def draw_speed(x, y1, y2):
     ax1 = ax_list[0]
     ax2 = ax_list[1]
 
+    # make the axis move dynamically with the data
     if(x > repeat_length):
         ax1.set_xlim(x - repeat_length, x)
         ax2.set_xlim(x - repeat_length, x)

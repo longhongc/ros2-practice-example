@@ -20,16 +20,17 @@ class TemperaturePublisher: public rclcpp::Node{
             timer_ = this->create_wall_timer(interval, std::bind(&TemperaturePublisher::timer_callback, this)); 
         }
     private:
-        double create_random_temp(){
+        double create_random_temp(int mean, int sigma){
             std::random_device rd;
             std::mt19937 gen(rd()); 
-            std::normal_distribution<double> gauss_dist(27, 1); //mean=27 degree, sigma=1
+            std::normal_distribution<double> gauss_dist(mean, signa); //mean=27 degree, sigma=1
             return gauss_dist(gen); 
         }
 
         void timer_callback(){
             auto message = sensor_interfaces::msg::Temperature(); 
-            message.temp = create_random_temp();
+            // simulate temperature as a gaussian distribution with mean of 27 degree Celcius
+            message.temp = create_random_temp(27, 1);
             RCLCPP_INFO(this->get_logger(), "Publishing temperature %lf", message.temp); 
             publisher_->publish(message); 
         }
