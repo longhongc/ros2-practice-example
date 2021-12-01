@@ -32,11 +32,12 @@ def main(args=None):
 
     laser_subscriber = LaserSubscriber()
     rclpy.spin(laser_subscriber)
-    
+
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically) 
     laser_subscriber.destroy_node()
     rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

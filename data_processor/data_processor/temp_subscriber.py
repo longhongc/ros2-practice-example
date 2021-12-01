@@ -1,11 +1,11 @@
 import rclpy
+
 from rclpy.node import Node
 
 from sensor_interfaces.msg import Temperature
 
 import signal
 from data_processor.utils import signal_handler, plot
-
 
 class TemperatureSubscriber(Node):
 
@@ -21,13 +21,14 @@ class TemperatureSubscriber(Node):
         self.count+=1
         self.get_logger().info('I heard: %s' % msg.temp)
 
+
 def main(args=None):
     signal.signal(signal.SIGINT, signal_handler.signal_handler)
     rclpy.init(args=args)
 
     temperature_subscriber = TemperatureSubscriber()
     rclpy.spin(temperature_subscriber)
-    
+
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically) 
     temperature_subscriber.destroy_node()

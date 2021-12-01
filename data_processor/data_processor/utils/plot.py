@@ -27,12 +27,16 @@ def draw_temp(x, y):
 
     prev_x = x
     prev_y = y 
- 
+
+#axis_list = []
 def speed_plot_setting():
-    global repeat_length
+    global repeat_length, axis_list
     fig.canvas.set_window_title('Speed')
+    #_, (ax1, ax2) = plt.subplots(2, sharex=True)
     ax1 = plt.subplot(2,1,1)
     ax2 = plt.subplot(2,1,2)
+   # axis_list.append(ax1)
+   # axis_list.append(ax2)
     ax1.title.set_text('linear')
     ax2.title.set_text('angular')
     repeat_length = 50
@@ -42,13 +46,14 @@ def speed_plot_setting():
     ax2.set_ylim(-3.14, 3.14)
     return ax1, ax2
 
-prev_x = 0
 prev_y1 = 0
 prev_y2 = 0
 def draw_speed(x, y1, y2):
     global repeat_length, prev_x, prev_y1, prev_y2
-    ax1 = plt.subplot(2,1,1)
-    ax2 = plt.subplot(2,1,2)
+
+    ax_list = plt.gcf().get_axes() 
+    ax1 = ax_list[0]
+    ax2 = ax_list[1]
 
     if(x > repeat_length):
         ax1.set_xlim(x - repeat_length, x)

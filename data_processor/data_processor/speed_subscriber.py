@@ -31,15 +31,13 @@ class SpeedSubscriber(Node):
                                'linear: [x: %lf, y: %lf, z, %lf] ' \
                                'angular: [x: %lf, y: %lf, z: %lf]'%(lx, ly, lz, ax, ay, az))
 
-
-
 def main(args=None):
     signal.signal(signal.SIGINT, signal_handler.signal_handler)
     rclpy.init(args=args)
 
     speed_subscriber = SpeedSubscriber()
     rclpy.spin(speed_subscriber)
-    
+
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically) 
     speed_subscriber.destroy_node()
