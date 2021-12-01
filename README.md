@@ -1,5 +1,5 @@
 # ROS2 Practice Example
-This repository is for practicing of some ros2 feature.   
+This repository is for practicing some ros2 feature.   
 The publisher and subscriber of three different sensors are implemented.   
 The publisher is written in C++ and the subscriber is written in Python for eaiser usage of matplotlib visualization.  
 Each example contains some demonstrations:  
